@@ -1,0 +1,56 @@
+PODS:
+  - AFNetworking (3.1.0):
+    - AFNetworking/NSURLSession (= 3.1.0)
+    - AFNetworking/Reachability (= 3.1.0)
+    - AFNetworking/Security (= 3.1.0)
+    - AFNetworking/Serialization (= 3.1.0)
+    - AFNetworking/UIKit (= 3.1.0)
+  - AFNetworking/NSURLSession (3.1.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.1.0)
+  - AFNetworking/Security (3.1.0)
+  - AFNetworking/Serialization (3.1.0)
+  - AFNetworking/UIKit (3.1.0):
+    - AFNetworking/NSURLSession
+  - HappyDNS (0.3.12)
+  - Qiniu (7.1.7):
+    - AFNetworking (~> 3)
+    - HappyDNS (~> 0.3)
+  - WilddogAuth (2.0.7):
+    - WilddogCore (~> 2.0.2)
+  - WilddogBoard (0.1.0)
+  - WilddogCore (2.0.11)
+  - WilddogSync (2.3.11):
+    - WilddogCore (~> 2.0.11)
+  - WilddogVideoBase (2.1.0):
+    - WilddogCore (>= 2.0.11)
+    - WilddogWebRTC (~> 62.0.0)
+  - WilddogVideoRoom (2.2.0):
+    - WilddogAuth (>= 2.0.2)
+    - WilddogVideoBase (~> 2.1.0)
+  - WilddogWebRTC (62.0.0)
+
+DEPENDENCIES:
+  - Qiniu (= 7.1.7)
+  - WilddogAuth
+  - WilddogBoard
+  - WilddogSync
+  - WilddogVideoRoom
+
+SPEC CHECKSUMS:
+  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  HappyDNS: 691a3041128055d09866f86e6e9ca90f24da1f18
+  Qiniu: 56ea8b9d785326e45e3a6fdd45bdbc84f78d0eff
+  WilddogAuth: 6c5f364277547490eed7e5a5c955b45e544e8ebf
+  WilddogBoard: 3501edb76d4c8de8ccc6609f451a06a2c77aa7b8
+  WilddogCore: 515371b98a3298ced567033df3348f9f0e3b2dc0
+  WilddogSync: fb3dc0c95440d8be8f382100d1677b56c72f1b69
+  WilddogVideoBase: 637a586735c53ee2d2c4d39cad9800ab89807577
+  WilddogVideoRoom: ca215565d6843675370ad444af56a73b6c9df234
+  WilddogWebRTC: 8a74052768b6341319de9b3913b68e6499765ffb
+
+PODFILE CHECKSUM: 9b9981867a2b9bb13a0a1f4ade7caf79c13dee95
+
+COCOAPODS: 1.2.0
