@@ -7,13 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "WDGRoomConfig.h"
 @import WilddogBoard;
 
-#define QiniuAK       @"qSIHb2rWYZNiE80039Uyk7PpiaWTNwdPnRsvzmM-"
-#define QiniuSK       @"3bKGdYSjVgnIATs-fOJFH9pIxx0192h-8vd28EWO"
-#define QiniuRoomName @"whiteboard"
-#define QiniuRoomURL  @"https://oisha19l0.qnssl.com/"
 
 
 @interface BoardToolBar : UIView
