@@ -221,11 +221,12 @@
         _hideButton =nil;
         [UIView animateWithDuration:animationTime animations:^{
             self.tableView.frame = CGRectMake(0, 60, 60, 260);
+            [self.tableView reloadData];
+
             self.chatView.center = CGPointMake(self.chatView.center.x+self.chatView.frame.size.width, self.chatView.center.y);
         } completion:^(BOOL finished) {
             _header.hidden=NO;
             _footer.hidden=NO;
-            [self.tableView reloadData];
             self.chatView.hidden =YES;
         }];
     }
@@ -243,9 +244,10 @@
     _footer.hidden=YES;
     [UIView animateWithDuration:animationTime animations:^{
         self.tableView.frame = CGRectMake(0, 20, 270, self.view.frame.size.height-20);
+        [self.tableView reloadData];
+
         self.chatView.center = CGPointMake(self.chatView.center.x-self.chatView.frame.size.width, self.chatView.center.y);
     } completion:^(BOOL finished) {
-        [self.tableView reloadData];
         _hideButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_hideButton setImage:[UIImage imageNamed:@"division"] forState:UIControlStateNormal];
         [_hideButton addTarget: self action:@selector(hideMembersChat) forControlEvents:UIControlEventTouchUpInside];
