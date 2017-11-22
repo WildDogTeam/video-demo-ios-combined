@@ -13,6 +13,7 @@
 {
     UILabel *_nameLabel;
     UILabel *_messageLabel;
+    UIImageView *_messageImageV;
 }
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -32,16 +33,20 @@
     nameLabel.textColor = [UIColor lightGrayColor];
     [self.contentView addSubview:nameLabel];
     
+    UIImageView *messageImageV =[[UIImageView alloc] init];
+    [self.contentView addSubview:messageImageV];
+    _messageImageV = messageImageV;
+    
     UILabel *messageLabel = [UILabel new];
     _messageLabel = messageLabel;
     _messageLabel.textColor = [UIColor blackColor];
-    _messageLabel.backgroundColor = [UIColor whiteColor];
-    _messageLabel.layer.cornerRadius = 5;
-    _messageLabel.clipsToBounds =YES;
+//    _messageLabel.backgroundColor = [UIColor whiteColor];
+//    _messageLabel.layer.cornerRadius = 5;
+//    _messageLabel.clipsToBounds =YES;
     _messageLabel.numberOfLines = 0;
     _messageLabel.preferredMaxLayoutWidth = 150;
     _messageLabel.font = [UIFont systemFontOfSize:16];
-    [self.contentView addSubview:_messageLabel];
+    [messageImageV addSubview:_messageLabel];
 }
 
 -(void)setLayout:(WDGChatMessageLayout *)layout
@@ -50,10 +55,24 @@
     _nameLabel.text =layout.message.nickname;
     _messageLabel.text = layout.message.message;
     if([layout.message.uid isEqualToString:[WDGAuth auth].currentUser.uid]){
-        _type = WDGChatTypeMe;
+        self.type = WDGChatTypeMe;
     }else{
-        _type = WDGChatTypeOther;
+        self.type = WDGChatTypeOther;
     }
+    
+    _messageLabel.frame = CGRectMake(0, 0, WDGChatMessageMaxWidth, CGFLOAT_MAX);
+    [_messageLabel sizeToFit];
+    _messageLabel.frame = CGRectMake(10, 5, _messageLabel.frame.size.width, _messageLabel.frame.size.height);
+    
+    UIImage *image =[UIImage imageNamed:@"会话气泡"];
+    if(_type == WDGChatTypeMe){
+        _messageImageV.image =[image resizableImageWithCapInsets:UIEdgeInsetsMake(image.size.height*.5, image.size.width*.2, image.size.height*.5, image.size.width*.8) resizingMode:UIImageResizingModeStretch];
+        _nameLabel.textAlignment =NSTextAlignmentRight;
+    }else{
+        _messageImageV.image =[image resizableImageWithCapInsets:UIEdgeInsetsMake(image.size.height*.5, image.size.width*.8, image.size.height*.5, image.size.width*.2) resizingMode:UIImageResizingModeStretch];
+        _nameLabel.textAlignment =NSTextAlignmentLeft;
+    }
+
 }
 
 -(void)setType:(WDGChatType)type
@@ -66,18 +85,12 @@
 {
     [super layoutSubviews];
     _nameLabel.frame = CGRectMake(20, 0, self.contentView.frame.size.width-40, 20);
-    
-    _messageLabel.frame = CGRectMake(0, 0, WDGChatMessageMaxWidth, CGFLOAT_MAX);
-    [_messageLabel sizeToFit];
-    
+
     if(_type == WDGChatTypeMe){
-        _messageLabel.frame = CGRectMake(self.contentView.frame.size.width -_messageLabel.frame.size.width-20, CGRectGetMaxY(_nameLabel.frame), _messageLabel.frame.size.width, _messageLabel.frame.size.height);
-        _nameLabel.textAlignment =NSTextAlignmentRight;
-
+        _messageImageV.frame = CGRectMake(self.contentView.frame.size.width -_messageLabel.frame.size.width-20-20, CGRectGetMaxY(_nameLabel.frame)+5, _messageLabel.frame.size.width+20, _messageLabel.frame.size.height+10);
     }else{
-        _messageLabel.frame = CGRectMake(20, CGRectGetMaxY(_nameLabel.frame), _messageLabel.frame.size.width, _messageLabel.frame.size.height);
-        _nameLabel.textAlignment =NSTextAlignmentLeft;
-
+        _messageImageV.frame = CGRectMake(20, CGRectGetMaxY(_nameLabel.frame)+5, _messageLabel.frame.size.width+10*2, _messageLabel.frame.size.height+10);
     }
+
 }
 @end

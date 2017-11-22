@@ -35,7 +35,7 @@
                                                     options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
                                                  attributes:dic
                                                     context:nil].size.height;
-    self.height =ceil(curheight)+30;
+    self.height =ceil(curheight)+30+10;
 }
 
 @end
